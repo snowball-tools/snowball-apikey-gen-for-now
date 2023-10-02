@@ -1,29 +1,36 @@
----
-title: FastAPI
-description: A FastAPI server
-tags:
-  - fastapi
-  - hypercorn
-  - python
----
+# Snowball API Generation [FastAPI](https://fastapi.tiangolo.com/) (this is just for now. dashboard incoming)
 
-# FastAPI Example
+## Getting Started
 
-This example starts up a [FastAPI](https://fastapi.tiangolo.com/) server.
+### Virtual Environment
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/-NvLj4?referralCode=CRJ8FE)
-## ✨ Features
+| Command | Task |
+| --- | --- |
+| `python -m venv venv` | create |
+| `. venv/bin/activate` | activate |
+| `deactivate` | deactivate |
 
-- FastAPI
+### Dependencies
+
+```sh
+pip install -r requirements.txt
+```
+
+### Run Locally
+
+```sh
+hypercorn main:app --reload
+```
+
+### Test Locally
+  
+```sh
+curl -X POST "http://127.0.0.1:8000/generate_key/?adminapikey=<adminApiKey>" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "John Doe", "email": "jonDoe@example.com"}'
+```
+
+## Documentation
+
+- [FastAPI](https://fastapi.tiangolo.com/tutorial/)
 - [Hypercorn](https://hypercorn.readthedocs.io/)
-- Python 3
-
-## 💁‍♀️ How to use
-
-- Clone locally and install packages with pip using `pip install -r requirements.txt`
-- Run locally using `hypercorn main:app --reload`
-
-## 📝 Notes
-
-- To learn about how to use FastAPI with most of its features, you can visit the [FastAPI Documentation](https://fastapi.tiangolo.com/tutorial/)
-- To learn about Hypercorn and how to configure it, read their [Documentation](https://hypercorn.readthedocs.io/)
