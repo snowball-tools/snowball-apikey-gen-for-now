@@ -1,6 +1,7 @@
 import os
 import uuid
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 import psycopg2
 from fastapi import FastAPI, HTTPException, Depends
@@ -13,6 +14,14 @@ conn = psycopg2.connect(DATABASE_URL)
 cur = conn.cursor()
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"], 
+    allow_headers=["*"], 
+)
 
 @app.get("/")
 async def root():
