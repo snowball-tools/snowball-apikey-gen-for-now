@@ -46,11 +46,11 @@ def generate_key(user: User, authorized: bool = Depends(is_admin)) -> JSONRespon
         raise HTTPException(status_code=400, detail="Not authorized")
 
 @app.get("/valid_key/")
-def check_key(apikey: APIKey) -> JSONResponse:
+def valid_key(apikey: APIKey) -> JSONResponse:
     cur.execute("SELECT * FROM users WHERE apikey=%s", (apikey.apikey,))
     user = cur.fetchone()
     if not user:
-        return JSONResponse(status_code=400, content={"detail": "Invalid API key"})
+        raise HTTPException(status_code=400, detail="Invalid API key")
     return JSONResponse(
         status_code=200,
         content={"name": user[0], "email": user[1], "apikey": user[2], "valid": True},

@@ -6,3 +6,4 @@ class User(BaseModel):
 
 class APIKey(BaseModel):
     apikey: str
+    authProvider: str = "lit"
